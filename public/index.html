@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <title>Location Finder</title>
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid;
+        }
+
+        * {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    <!--Auto generate by code-->
+
+    <h1>Location Finder Places List</h1>
+    <table id="datatable">
+        <tr>
+            <th>ID</th>
+            <th>Place Name</th>
+            <th>Number of people</th>
+        </tr>
+        <tr>
+            <th id="id1">1</th>
+            <th id="place1">library</th>
+            <th id="num1"></th>
+        </tr>
+        <tr>
+            <th id="id2">2</th>
+            <th id="place2">bathroom</th>
+            <th id="num2">12</th>
+        </tr>
+        <tr>
+            <th id="id3">3</th>
+            <th id="place3">s1</th>
+            <th id="num3">6</th>
+        </tr>
+    </table>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript">
+        var socket = io();
+        socket.on('revData', (data) => {
+            let datalength = data.length;
+            for(var i = 0; i < datalength; i++) {
+            let index = i + 1;
+            let id = document.getElementById(`id${index}`);
+            let places = document.getElementById(`place${index}`);
+            let num = document.getElementById(`num${index}`);
+            id.textContent = data[i].id;
+            places.textContent = data[i].name;
+            num.textContent = data[i].numPeople;
+            }
+        })
+        // generateSigleElement();
+        // const a = setInterval(window.location.reload(),2000)
+        // async function generateSigleElement() {
+        //     //initialize
+        //     const table = await document.getElementById('datatable');
+        //     table.remove();
+        //     let firstTr = await document.createElement('tr')
+        //     let id = await document.createElement('th');
+        //     let name = await document.createElement('th');
+        //     let numofpeople = await document.createElement('th');
+        //     id.textContent = 'ID';
+        //     name.textContent = 'Place Name';
+        //     numofpeople.textContent = 'Number of People';
+        //     firstTr.append(id);
+        //     firstTr.append(name);
+        //     firstTr.append(numofpeople);
+        //     table.append(firstTr);
+        //     //access to database and get info
+        //     const response = await fetch('/select');
+        //     const data = await response.json();
+        //     console.log(data);
+        //     const num = await data.length;
+        //     console.log(data.length);
+        //     for (var i = 0; i < num; i++) {
+        //         let tr = await document.createElement('tr');
+        //         let th1 = await document.createElement('th');
+        //         let th2 = await document.createElement('th');
+        //         let th3 = await document.createElement('th');
+        //         th1.textContent = await data[i].id;
+        //         th2.textContent = await data[i].name;
+        //         th3.textContent = await data[i].numPeople;
+        //         tr.append(th1);
+        //         tr.append(th2);
+        //         tr.append(th3);
+        //         table.append(tr);
+        //     }
+        //     document.body.appendChild(table);
+
+        // }
+        
+        // setTimeout(function () { location.reload(); }, 3000)
+
+
+
+
+        // let datafromtable = document.createElement("table");
+        // datatable.setAttribute('id','hhaa');
+    // for(var i = 0; i< results.length; i++){
+    //     let tr = document.createElement("tr");
+    //     let th1 = document.createElement("th");
+    //     let th2 = document.createElement("th");
+    //     let th3 = document.createElement("th");
+    //     th1.attributes('id',`id${i+1}`)
+    //     th2.attributes('id',`place${i+1}`)
+    //     th3.attributes('id',`num${i+1}`)
+    //     tr.appendChild(th1);
+    //     tr.appendChild(th2);
+    //     tr.appendChild(th3);
+    //     datatable.append(tr);
+    //     document.appendChild(datatable);
+    // }
+    </script>
+
+
+
+</body>
+
+</html>
