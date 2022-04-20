@@ -1,5 +1,9 @@
 {
   "dependencies": {
+    "express": "^4.17.3",
+    "http": "^0.0.1-security",
+    "mysql": "^2.18.1",
+    "serialport": "^10.4.0",
     "socket.io": "^4.4.1"
   }
 }
